@@ -1,6 +1,8 @@
 #!/usr/bin/ksh
 # Original: GioIan     25/05/2017 - aix_chage
-# Edit:     Salvarani  30/01/2020 - Change date output format and removed username print
+# Edit:     Salvarani  30/01/2020 - Added several attributes (Password inactive, Account expires, 
+#                                       Minimum/Maximum number of days between password change, Number of days of warning before password expires), 
+#                                       changed date output format and removed username print
 # Edit:     Salvarani  13/02/2020 - Changed structure to a C-Like structure, optimized and reviewed code, added check for dependencies
 
 # Global Variables
@@ -52,8 +54,9 @@ main () {
     fi
 
     # Check for file: /etc/security/passwd
-    if [ $(grep -p "$username_to_search:" /etc/security/passwd | grep lastupdate | wc -l) -eq 0 ]; then
-        printf "${red}ERROR${default} - User $username_to_search is not defined in the /etc/security/passwd file\n\n"
+    if [ $(grep -p "$username_to_search:" /etc/security/passwd 2>/dev/null | grep lastupdate | wc -l) -eq 0 ]; then
+        printf "${red}ERROR${default} - User $username_to_search is not defined in the /etc/security/passwd file\n";
+        printf "\tNote that this could be also because of a lack of permission\n\n";
         
         return 1;
     fi
@@ -187,7 +190,7 @@ function checkDependencies {
     total_programs=$(echo "$progs" | wc -w); 
 
     for p in ${progs}; do
-        command -v "$p" >/dev/null || {
+        command -v "$p" >/dev/null 2>&1 || {
             printf "${yellow}WARNING${default} - Program required is not installed: $p\n";
 
             not_found_counter=$(expr $not_found_counter + 1);
