@@ -12,7 +12,7 @@ Then i found that years before Giorgio, a coworker of mine, already made a scrip
 
 ## Instructions
 To use it:
-1. **Copy**/scp the script into a path of your choice (i'll use `/tmp/chage_aix.sh`)
+1. **Copy**/scp the [script](./chage_aix.sh) into a path of your choice (i'll use `/tmp/chage_aix.sh`)
 2. Make it **executable**
 3. **Launch** it: `/tmp/chage_aix.sh USERNAME`
 
