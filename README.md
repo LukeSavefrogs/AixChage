@@ -20,9 +20,9 @@ To use it:
 ## Output comparison:
 * Linux (`chage -l`)  
   
-  <img src="./assets/chage_linux.png" width="65%"></img>
+  <img src="./assets/chage_linux.png" width="65%"/>
 
 
 * AIX (`aix_chage`)  
   
-  <img src="./assets/chage_aix.png" width="65%"></img>
+  <img src="./assets/chage_aix.png" width="65%"/>
